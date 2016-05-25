@@ -51,7 +51,9 @@ public abstract class BaseGridAdapter extends BaseAdapter {
             ll.setLayoutParams(lp);
             ll.setOrientation(LinearLayout.VERTICAL);
             ll.setGravity(Gravity.CENTER_HORIZONTAL);
-            ll.addView(getCellView((getNumColumns() * position) + index));
+            if((getNumColumns() * position) + index < getTotal()){
+                ll.addView(getCellView((getNumColumns() * position) + index));
+            }
 
             linearLayout.addView(ll);
         }
