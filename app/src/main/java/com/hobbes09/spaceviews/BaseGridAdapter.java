@@ -46,16 +46,13 @@ public abstract class BaseGridAdapter extends BaseAdapter {
         float layoutWeight = 100f / getNumColumns();
 
         for(int index = 0; index < getNumColumns(); index++){
-            LinearLayout ll = new LinearLayout(getContext());
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, layoutWeight);
-            ll.setLayoutParams(lp);
-            ll.setOrientation(LinearLayout.VERTICAL);
-            ll.setGravity(Gravity.CENTER_HORIZONTAL);
             if((getNumColumns() * position) + index < getTotal()){
-                ll.addView(getCellView((getNumColumns() * position) + index));
-            }
+                View child = getCellView((getNumColumns() * position) + index);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, layoutWeight);
+                child.setLayoutParams(lp);
 
-            linearLayout.addView(ll);
+                linearLayout.addView(child);
+            }
         }
 
         return linearLayout;
